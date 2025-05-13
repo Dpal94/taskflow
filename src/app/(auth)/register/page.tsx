@@ -1,4 +1,4 @@
-import Button from '@/app/components/elements/button';
+import Button from '@/app/components/ui/button';
 import Link from 'next/link';
 
 export default function Login() {

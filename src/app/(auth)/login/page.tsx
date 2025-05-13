@@ -1,6 +1,6 @@
-import Button from '@/app/components/elements/button';
-import Input from '@/app/components/elements/input';
-import LabelWrapper from '@/app/components/elements/label-wrapper';
+import Button from '@/app/components/ui/button';
+import Input from '@/app/components/ui/input';
+import LabelWrapper from '@/app/components/ui/label-wrapper';
 import Link from 'next/link';
 
 export default function Login() {
