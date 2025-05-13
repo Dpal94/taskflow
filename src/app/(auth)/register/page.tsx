@@ -1,7 +1,14 @@
+'use client';
 import Button from '@/app/components/ui/button';
 import Link from 'next/link';
 
 export default function Login() {
+  const onSubmit = (formData: FormData): void => {
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    localStorage.setItem('auth', JSON.stringify({email, password}));
+  };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,7 +19,7 @@ export default function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form action={onSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -39,27 +46,6 @@ export default function Login() {
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Password
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                autoComplete="current-password"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-900"
-              >
-                Confirm password
               </label>
             </div>
             <div className="mt-2">
