@@ -4,6 +4,7 @@ export default function Button({
   type = 'button',
   label,
   onClick,
+  role,
 }: BaseButtonType) {
   return (
     <button
