@@ -1,9 +1,21 @@
+'use client';
 import Button from '@/app/components/ui/button';
 import Input from '@/app/components/ui/input';
 import LabelWrapper from '@/app/components/ui/label-wrapper';
 import Link from 'next/link';
+import {useRouter} from 'next/navigation';
 
 export default function Login() {
+  const onSubmit = (formData: FormData): void => {
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const authStorageData = localStorage.getItem('auth');
+    if (authStorageData === JSON.stringify({email, password})) {
+      localStorage.setItem('isLogged', JSON.stringify(true));
+    }
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -14,7 +26,7 @@ export default function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form action={onSubmit} className="space-y-6">
           <LabelWrapper text="Email address" htmlFor="email">
             <Input type="email" />
           </LabelWrapper>
