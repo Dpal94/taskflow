@@ -28,4 +28,5 @@ body {
 input {
   background: #ffffff0d;
   outline-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+  color: white;
 }
