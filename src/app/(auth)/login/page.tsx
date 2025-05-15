@@ -6,6 +6,8 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 
 export default function Login() {
+  const router = useRouter();
+
   const onSubmit = (formData: FormData): void => {
     const email = formData.get('email');
     const password = formData.get('password');
@@ -13,6 +15,7 @@ export default function Login() {
     const authStorageData = localStorage.getItem('auth');
     if (authStorageData === JSON.stringify({email, password})) {
       localStorage.setItem('isLogged', JSON.stringify(true));
+      router.push('/');
     }
   };
 
