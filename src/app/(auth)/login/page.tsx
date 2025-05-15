@@ -47,7 +47,7 @@ export default function Login() {
           Not a member?
           <Link
             href="/register"
-            className="font-semibold text-indigo-600 hover:text-indigo-500"
+            className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1"
           >
             Sing up
           </Link>
