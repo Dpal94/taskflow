@@ -1,6 +1,8 @@
 'use client';
-import {useEffect} from 'react';
+
+import {usePathname} from 'next/navigation';
 import {useRouter} from 'next/navigation';
+import {useEffect} from 'react';
 
 type Props = {
   children: React.ReactNode;
@@ -8,15 +10,14 @@ type Props = {
 
 const AuthGuard = ({children}: Props) => {
   const router = useRouter();
+  const pathName = usePathname();
 
   useEffect(() => {
     const isLogged = localStorage.getItem('isLogged');
-
     if (!isLogged) {
       router.push('/login');
-      return;
     }
-  }, [router]);
+  }, [pathName]);
 
   return children;
 };
