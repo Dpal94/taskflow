@@ -1,5 +1,8 @@
+'use client';
 import Link from 'next/link';
-import Button from '../ui/button';
+import Profile from './components/profile';
+import Dropdown from '../ui/dropdown';
+import {useRouter} from 'next/navigation';
 
 const menuItemsList = [
   {label: 'Home', href: '/'},
@@ -7,6 +10,23 @@ const menuItemsList = [
 ];
 
 export default function Header() {
+  const router = useRouter();
+
+  const logout = () => {
+    localStorage.removeItem('isLogged');
+    router.push('/login');
+  };
+
+  const profileOptions = [
+    {
+      label: 'Logout',
+      icon: '🚪',
+      onClick: () => {
+        logout();
+      },
+    },
+  ];
+
   const renderMenuItems = menuItemsList.map((i) => (
     <Link
       key={i.label}
@@ -69,18 +89,16 @@ export default function Header() {
                 </svg>
               </button>
             </div>
+
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">{renderMenuItems}</div>
               </div>
             </div>
-            <div className="flex space-x-4">
-              <Link href="/login" tabIndex={-1}>
-                <Button label="Sign in" />
-              </Link>
-              <Link href="/register" tabIndex={-1}>
-                <Button label="Sign up" />
-              </Link>
+            <div className="justify-center">
+              <Dropdown options={profileOptions}>
+                <Profile />
+              </Dropdown>
             </div>
           </div>
         </div>
