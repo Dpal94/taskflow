@@ -13,9 +13,11 @@ const AuthGuard = ({children}: Props) => {
   const pathName = usePathname();
 
   useEffect(() => {
-    const isLogged = localStorage.getItem('isLogged');
-    if (!isLogged) {
-      router.push('/login');
+    if (pathName !== '/register') {
+      const isLogged = localStorage.getItem('isLogged');
+      if (!isLogged) {
+        router.push('/login');
+      }
     }
   }, [pathName]);
 
